@@ -1,13 +1,12 @@
-"use strict";
-var character = 'mario';
-var age = 20;
-var isBlackBelt = false;
-var cric = function (diameter) {
-    return diameter * Math.PI;
-};
-console.log(cric(40));
-var add = function (a, b, c) {
-    if (c === void 0) { c = 10; }
-    console.log(a + b);
-    console.log(c);
-};
+import { Invoice } from './classes/Invoice.js';
+const invOne = new Invoice('Mario', 'work on mario website', 250);
+const form = document.querySelector('form');
+// inputs
+const type = document.querySelector('#type');
+const toForm = document.querySelector('#tofrom');
+const details = document.querySelector('#details');
+const amount = document.querySelector('#amount');
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log(type.value, toForm.value, details.value, amount.valueAsNumber);
+});

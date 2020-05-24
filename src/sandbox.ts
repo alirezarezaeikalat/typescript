@@ -1,16 +1,27 @@
-type stringWithNum = string | number;
-let character = 'mario';
-let age = 20;
-let isBlackBelt = false;
+import { Invoice } from './classes/Invoice.js';
+import { Payment } from './classes/payment.js';
 
+//test
+interface IsPerson {
+    name: string;
+    speak(a: string): void;
 
-const cric = (diameter: number) => {
-    return diameter * Math.PI;
 }
 
-console.log(cric(40));
+const invOne = new Invoice('Mario', 'work on mario website', 250);
+const form = document.querySelector('form') as HTMLFormElement;
+// inputs
+const type = document.querySelector('#type') as HTMLSelectElement;
+const toForm = document.querySelector('#tofrom') as HTMLInputElement;
+const details = document.querySelector('#details') as HTMLInputElement;
+const amount = document.querySelector('#amount') as HTMLInputElement;
 
-const add = (a: stringWithNum, b: number, c: number | string = 10) => {
-    console.log(a);
-    console.log(c);
-}
+form.addEventListener('submit', (e: Event): void => {
+    e.preventDefault();
+    console.log(
+        type.value,
+        toForm.value,
+        details.value,
+        amount.valueAsNumber
+        );
+})
