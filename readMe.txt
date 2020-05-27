@@ -139,7 +139,7 @@
 
     //but for example if we use class name to get the element, the type will be 
     // Element, not HTMLAnchorElement, but we can use type casting to give the 
-    // type:
+    // type, when you use type casting, it is not nesseccary to use ! :
 
         const form = document.querySelector('.new-item-form') as HTMLFormElement;
 
@@ -174,11 +174,11 @@
 18. If we use access modifiers, we can short format for making constructors and 
     properties: 
             class Invoice {
-                constructor() {
+                constructor(
                     readonly client: string, 
                     private details: string,
                     public amount: number
-                }
+                ){} 
             }
 [ATTENTION] you can use this short format only if you use access modifiers
 
@@ -229,3 +229,23 @@
             class Inovice implements HasFormatter {
                 // the class should implements the HasFormatter funcitons
             }
+            let docOne : HasFormatter;
+            docOne = new Invoice('Yoshi', 'web work', 250);
+
+23. you can use union type to limit the function parameter to certain values:
+
+    render(item: HasFormatter, heading: string, position: 'start' | 'end'){
+        // position is a string that is 'start' or 'end'
+        // anything else will gives an error
+    }
+
+24. Generics in typescript:
+
+        generics can be used in functions and interfaces in typescript:
+
+        a. functions: 
+
+            const addUID = (obj: T) => {
+                let ui = Math.floor(Math.random * 100)
+            }
+
