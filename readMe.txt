@@ -245,7 +245,61 @@
 
         a. functions: 
 
-            const addUID = (obj: T) => {
-                let ui = Math.floor(Math.random * 100)
+            const addUID = (obj: object) => {
+                let uid = Math.floor(Math.random * 100)
+                return {...obj, uid};
             }
 
+            but forexample if you want to use it: 
+            doc = addUID({name: "alireza", age: 20});
+            doc.name 
+            // we get an error if we want to use it, so we have to
+            //use generics to overcome this problem:
+
+            const addUID = <T>(obj: T) => {
+                let uid = Math.floor(Math.random * 100)
+                return {...obj, uid};
+            }
+            // and the error will be gone
+            // but if we pass string for T, we also get an error 
+            // for this function, so we can do another thing: 
+            const addUID = <T extends {name: string}>(obj: T) => {
+                let uid = Math.floor(Math.random * 100)
+                return {...obj, uid};
+            }           
+
+        b. with interfaces:
+
+            interface Resource<T> {
+                uid: number;
+                resourceName: string;
+                data: T; 
+            }
+
+            const doc: Resource<object> = {
+                uid: 1,
+                resourceName: 'person',
+                data: {name: 'shaun'}
+            } 
+
+25. Enums in typescript: 
+
+    enum ResourceType { Book, Author, Film};
+
+    interface Resource<T> {
+        uid: number;
+        name: string;
+        resourceType: ResourceType;
+        data: T;
+    }
+
+    docoOne: Resource<string> = {
+        uid: 1,
+        resourceType: ResourceType.Book,
+        data: 'ghasem'
+    };
+
+26. Tuples in typescript, tuples are the arrays the type of each 
+    positon is fixed: 
+
+    let tup: [string, number, boolean] = ['hello', 40, true];
